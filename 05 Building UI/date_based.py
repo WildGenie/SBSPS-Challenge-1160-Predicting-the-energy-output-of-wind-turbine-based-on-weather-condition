@@ -27,8 +27,7 @@ def filter_data_based_on_dates(date1, date2, df):
     date1 = '-'.join(date1)
     date2 = '-'.join(date2)
     data = df[df['date'] >= date1]
-    data = data[data['date'] <= date2]
-    return data
+    return data[data['date'] <= date2]
 
 # filter data based on number of hours of a particular day
 def filter_data_based_on_hours(date, from_hour, to_hour, df):    
@@ -38,18 +37,18 @@ def filter_data_based_on_hours(date, from_hour, to_hour, df):
     date[2] = date[2].lstrip('0')
     date = '-'.join(date)
     data = df[df['date'] == date]
-    hour_list = list()
-    for hour in range(from_hour, to_hour):
-        hour_list.append('0'+str(hour) if hour < 10 else str(hour))
-    data = data[data.hour.isin(hour_list)]
-    return data
+    hour_list = [
+        f'0{str(hour)}' if hour < 10 else str(hour)
+        for hour in range(from_hour, to_hour)
+    ]
+    return data[data.hour.isin(hour_list)]
 
 #create marks dictionary for slider
 def get_marks():
-    marks = dict()
-    for val in range(25):
-        marks[val] = '0'+str(val)+':00' if val < 10 else str(val)+':00'
-    return marks
+    return {
+        val: f'0{str(val)}:00' if val < 10 else f'{str(val)}:00'
+        for val in range(25)
+    }
 
 #load data into a dataframe
 url = './data.csv'

@@ -89,8 +89,7 @@ def plot_predicted_power(df):
 	return fig
 
 def get_hours():
-	hours = np.arange(72)
-	return hours
+    return np.arange(72)
 
 ##### helper function ends #########
 
