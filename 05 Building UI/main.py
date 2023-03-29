@@ -162,19 +162,14 @@ def update_content(pathname):
     dash.dependencies.Output('navbar', 'children'),
     [dash.dependencies.Input('url', 'pathname')])
 def update_content(pathname):
-        if pathname == '/show_factors':
-            return navbar
-        elif pathname == '/show_factors_date':
-            return navbar
-
-        elif pathname == '/show_predictions':
-            return navbar
-        
-        elif pathname == '/retrain':
-            return navbar
-
-        elif pathname == '/':
-            return navbar
+    if pathname in [
+        '/show_factors',
+        '/show_factors_date',
+        '/show_predictions',
+        '/retrain',
+        '/',
+    ]:
+        return navbar
         
 
 

@@ -100,12 +100,12 @@ layout = html.Div(className="container",style={},
 	 Input("upload_file", "contents")],
 	[State("upload_file", "filename")])
 def update_response(btn1, contents, filename):
-	changed_id = [p['prop_id'] for p in dash.callback_context.triggered][0]
-	if contents == None:
-		message = "Training Successful !!!"
-	else:	
-		message = save_csv(contents, filename)
-	if 'trainButton' in changed_id:
-		return (message)
+    changed_id = [p['prop_id'] for p in dash.callback_context.triggered][0]
+    if 'trainButton' in changed_id:
+        return (
+            "Training Successful !!!"
+            if contents is None
+            else save_csv(contents, filename)
+        )
 
 
